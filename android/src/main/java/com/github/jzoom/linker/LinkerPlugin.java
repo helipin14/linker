@@ -180,7 +180,10 @@ public class LinkerPlugin implements MethodCallHandler, PluginRegistry.ActivityR
           this.result = result;
           this.requestCode = (Integer) call.arguments;
           Log.e("RequestCode", "Request Code : " + String.valueOf(requestCode));
-          Intent intent = new Intent(Settings.ACTION_DATA_USAGE_SETTINGS);
+          // Intent intent = new Intent(Settings.ACTION_DATA_USAGE_SETTINGS);
+          Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+          intent.setClassName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity");
+          intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
           try {
             activity.startActivityForResult(intent, requestCode);
           } catch(Throwable e) {
